@@ -11,10 +11,10 @@ class PayrollsBaseDataSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CompanyTaxpayerTypesTableSeeder::class);
-        $this->call(EmployeeTaxpayerTypesTableSeeder::class);
-        $this->call(IdentityCardTypesTableSeeder::class);
-        $this->call(LegalCompanyNaturesTableSeeder::class);
-        $this->call(LegalPersonNaturesTableSeeder::class);
+        $this->call(RealCompanyTaxpayerTypesTableSeeder::class);
+        $this->call(RealEmployeeTaxpayerTypesTableSeeder::class);
+        $this->call(RealIdentityCardTypesTableSeeder::class);
+        $this->call(RealLegalCompanyNaturesTableSeeder::class);
+        $this->call(RealLegalPersonNaturesTableSeeder::class);
     }
 }
