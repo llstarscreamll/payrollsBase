@@ -67,12 +67,18 @@ var fonts = [
     'public/plugins/ionicons/fonts/'
 ];
 
+var cssCopy = [
+    'public/plugins/icheck2/square/blue.png',
+    'public/plugins/icheck2/square/red.png'
+];
+
 elixir(mix => {
     mix
-        .styles(styles, 'public/plugins.css')
-        .scripts(scripts, 'public/plugins.js')
+        .styles(styles, 'public/css/plugins.css')
+        .scripts(scripts, 'public/js/plugins.js')
         .sass('app.scss')
         .webpack('app.js')
         .copy(fonts, 'public/fonts')
+        .copy(cssCopy, 'public/css')
         ;
 });
