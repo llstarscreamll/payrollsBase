@@ -1,5 +1,5 @@
 {{--
-	En este fichero puede añadir los elementos que desee al menu del sidebar
+En este fichero puede añadir los elementos que desee al menu del sidebar
 --}}
 <li>
 	<a href="{{ route('home') }}">
