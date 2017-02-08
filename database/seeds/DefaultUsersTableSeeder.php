@@ -11,6 +11,12 @@ class DefaultUsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         $data[] =[
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+        ];
+
+        $data[] =[
             'name' => 'Travis Orbin',
             'email' => 'travis.orbin@example.com',
             'password' => bcrypt('123456'),
