@@ -22,8 +22,6 @@ class RoleTableSeeder extends Seeder
         $admin->description = 'Rol con permisos sobre la mayoría de funciones del sistema';
         $admin->save();
 
-        $permissions = Permission::pluck('id')->toArray();
-
-        $admin->permissions()->sync($permissions);
+        $this->call(AttachPermissionsToAdminRoleSeeder::class);
     }
 }

@@ -13,15 +13,13 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
 --}}
 
 <script type="text/javascript">
-
-    {{-- Configuración de Bootstrap DateTimePicker --}}
     
     {{-- Inicialización y configuración de Bootbox --}}
     initBootBoxComponent(

@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 packages/
 .phpintel/
+tests/_output/*

@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -35,8 +35,6 @@ return [
         'id' => 'Id',
         'name' => 'Nombre',
         'short_name' => 'Nombre corto',
-        'created_at' => 'Fecha de creación',
-        'updated_at' => 'Fecha de actualización',
     ],
 
     // nombres cortos de los elementos del formulario, para la tabla del index
@@ -44,8 +42,6 @@ return [
         'id' => 'Id',
         'name' => 'Nombre',
         'short_name' => 'Nombre corto',
-        'created_at' => 'Fecha de creación',
-        'updated_at' => 'Fecha de actualización',
     ],
 
     // Los nombres de los atributos de validación en Form Requests.
@@ -53,12 +49,6 @@ return [
         'id' => 'Id',
         'name' => 'Nombre',
         'short_name' => 'Nombre corto',
-        'created_at' => 'Fecha de creación',
-        'created_at[from]' => 'Fecha de creación inicial',
-        'created_at[to]' => 'Fecha de creación final',
-        'updated_at' => 'Fecha de actualización',
-        'updated_at[from]' => 'Fecha de actualización inicial',
-        'updated_at[to]' => 'Fecha de actualización final',
     ],
 
     // Los mensajes personalizados de validación en Form Requests.

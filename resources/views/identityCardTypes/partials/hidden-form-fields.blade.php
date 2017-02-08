@@ -15,24 +15,8 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
 --}}
-
-<div class='form-group col-sm-6 {{ $errors->has('created_at') ? 'has-error' : null }}'>
-	{!! Form::label('created_at', trans('identityCardType.form-labels.created_at')) !!}
-	{!! Form::input('text', 'created_at', null, ['class' => 'form-control', isset($show) ? 'disabled' : null]) !!}
-
-	{!! $errors->first('created_at', '<span class="text-danger">:message</span>') !!}
-</div>
-
-<div class='form-group col-sm-6 {{ $errors->has('updated_at') ? 'has-error' : null }}'>
-	{!! Form::label('updated_at', trans('identityCardType.form-labels.updated_at')) !!}
-	{!! Form::input('text', 'updated_at', null, ['class' => 'form-control', isset($show) ? 'disabled' : null]) !!}
-
-	{!! $errors->first('updated_at', '<span class="text-danger">:message</span>') !!}
-</div>
-
-<div class="clearfix"></div>

@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -18,10 +18,16 @@ namespace Page\Functional\Companies;
 use FunctionalTester;
 use llstarscreamll\Core\Models\User;
 use App\Models\IdentityCardType;
-use App\Models\CompanyTaxpayerType;
 use App\Models\LegalCompanyNature;
-use App\Models\LegalPersonNature;
 use App\Models\Municipality;
+use App\Models\IdentityCardType;
+use App\Models\ContributorClass;
+use App\Models\ContributorType;
+use App\Models\PayrollType;
+use App\Models\ArlCompany;
+use App\Models\Department;
+use App\Models\Bank;
+use App\Models\PilaPaymentOperator;
 
 class Index{
     /**
@@ -96,16 +102,8 @@ class Index{
         'name',
         'identity_card_type_id',
         'contributor_identity_card_number',
-        'verification_digit',
-        'company_taxpayer_type_id',
-        'legal_company_nature_id',
-        'legal_person_nature_id',
-        'has_branches',
-        'applay_1607_law',
-        'applay_1429_law',
-        'founded_at',
-        'address',
-        'municipality_id',
+        'person_type',
+        'email',
     ];
 
     /**
@@ -118,15 +116,41 @@ class Index{
         'identity_card_type_id',
         'contributor_identity_card_number',
         'verification_digit',
-        'company_taxpayer_type_id',
         'legal_company_nature_id',
-        'legal_person_nature_id',
-        'has_branches',
-        'applay_1607_law',
-        'applay_1429_law',
-        'founded_at',
+        'person_type',
         'address',
         'municipality_id',
+        'dane_activity_code',
+        'phone',
+        'fax',
+        'email',
+        'legal_rep_identity_card_type_id',
+        'legal_rep_identity_card_number',
+        'legal_rep_verification_digit',
+        'legal_rep_first_name',
+        'legal_rep_middle_name',
+        'legal_rep_first_surname',
+        'legal_rep_last_surname',
+        'legal_rep_email',
+        'contact_first_name',
+        'contact_last_name',
+        'contact_cell_phone',
+        'contact_email',
+        'contributor_class_id',
+        'presentation_form',
+        'contributor_type_id',
+        'payroll_type_id',
+        'arl_company_id',
+        'arl_department_id',
+        'law_1429_from_2010',
+        'law_1607_from_2012',
+        'commercial_registration_date',
+        'payment_method',
+        'bank_id',
+        'bank_account_type',
+        'bank_account_number',
+        'payment_frequency',
+        'pila_payment_operator_id',
     ];
 
      /**
@@ -139,15 +163,41 @@ class Index{
         'identity_card_type_id',
         'contributor_identity_card_number',
         'verification_digit',
-        'company_taxpayer_type_id',
         'legal_company_nature_id',
-        'legal_person_nature_id',
-        'has_branches',
-        'applay_1607_law',
-        'applay_1429_law',
-        'founded_at',
+        'person_type',
         'address',
         'municipality_id',
+        'dane_activity_code',
+        'phone',
+        'fax',
+        'email',
+        'legal_rep_identity_card_type_id',
+        'legal_rep_identity_card_number',
+        'legal_rep_verification_digit',
+        'legal_rep_first_name',
+        'legal_rep_middle_name',
+        'legal_rep_first_surname',
+        'legal_rep_last_surname',
+        'legal_rep_email',
+        'contact_first_name',
+        'contact_last_name',
+        'contact_cell_phone',
+        'contact_email',
+        'contributor_class_id',
+        'presentation_form',
+        'contributor_type_id',
+        'payroll_type_id',
+        'arl_company_id',
+        'arl_department_id',
+        'law_1429_from_2010',
+        'law_1607_from_2012',
+        'commercial_registration_date',
+        'payment_method',
+        'bank_id',
+        'bank_account_type',
+        'bank_account_number',
+        'payment_frequency',
+        'pila_payment_operator_id',
     ];
 
     /**
@@ -193,29 +243,59 @@ class Index{
         // creamos usuario admin de prueba
         \Artisan::call('db:seed', ['--class' => 'DefaultUsersTableSeeder']);
         \Artisan::call('db:seed', ['--class' => 'IdentityCardTypesTableSeeder']);
-        \Artisan::call('db:seed', ['--class' => 'CompanyTaxpayerTypesTableSeeder']);
         \Artisan::call('db:seed', ['--class' => 'LegalCompanyNaturesTableSeeder']);
-        \Artisan::call('db:seed', ['--class' => 'LegalPersonNaturesTableSeeder']);
         \Artisan::call('db:seed', ['--class' => 'MunicipalitiesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'IdentityCardTypesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'ContributorClassesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'ContributorTypesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'PayrollTypesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'ArlCompaniesTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'DepartmentsTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'BanksTableSeeder']);
+        \Artisan::call('db:seed', ['--class' => 'PilaPaymentOperatorsTableSeeder']);
 
         // damos valores a los atributos para crear un registro
         static::$companyData = [
             'id' => 1,
-            'name' => 'ACME',
+            'name' => 'Acme Inc.',
             'identity_card_type_id' => IdentityCardType::first(['id'])->id,
-            'contributor_identity_card_number' => 123456,
-            'verification_digit' => 7,
-            'company_taxpayer_type_id' => CompanyTaxpayerType::first(['id'])->id,
+            'contributor_identity_card_number' => 123,
+            'verification_digit' => 1,
             'legal_company_nature_id' => LegalCompanyNature::first(['id'])->id,
-            'legal_person_nature_id' => LegalPersonNature::first(['id'])->id,
-            'has_branches' => true,
-            'applay_1607_law' => true,
-            'applay_1429_law' => true,
-            'founded_at' => '2000-10-10',
-            'address' => 'calle 1 #2-3',
+            'person_type' => 'Jurídica',
+            'address' => 'calle 123',
             'municipality_id' => Municipality::first(['id'])->id,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'dane_activity_code' => 1,
+            'phone' => 123456,
+            'fax' => 987654,
+            'email' => 'acme@acme.com',
+            'legal_rep_identity_card_type_id' => IdentityCardType::first(['id'])->id,
+            'legal_rep_identity_card_number' => 1,
+            'legal_rep_verification_digit' => 1,
+            'legal_rep_first_name' => 'John',
+            'legal_rep_middle_name' => 'Sebastian',
+            'legal_rep_first_surname' => 'Doe',
+            'legal_rep_last_surname' => 'Amir',
+            'legal_rep_email' => 'john@example.com',
+            'contact_first_name' => 'Alfred',
+            'contact_last_name' => 'Brown',
+            'contact_cell_phone' => '12364 12354',
+            'contact_email' => 'alfred@example.com',
+            'contributor_class_id' => ContributorClass::first(['id'])->id,
+            'presentation_form' => 'unico',
+            'contributor_type_id' => ContributorType::first(['id'])->id,
+            'payroll_type_id' => PayrollType::first(['id'])->id,
+            'arl_company_id' => ArlCompany::first(['id'])->id,
+            'arl_department_id' => Department::first(['id'])->id,
+            'law_1429_from_2010' => true,
+            'law_1607_from_2012' => '0',
+            'commercial_registration_date' => date('Y-m-d'),
+            'payment_method' => 'Efectivo',
+            'bank_id' => Bank::first(['id'])->id,
+            'bank_account_type' => 'corriente',
+            'bank_account_number' => '123456789',
+            'payment_frequency' => 'Mensual',
+            'pila_payment_operator_id' => PilaPaymentOperator::first(['id'])->id,
         ];
     }
 
@@ -280,10 +360,16 @@ class Index{
 
         // los datos de las llaves foráneas
         $data['identity_card_type_id'] = IdentityCardType::find($data['identity_card_type_id'])->name;
-        $data['company_taxpayer_type_id'] = CompanyTaxpayerType::find($data['company_taxpayer_type_id'])->name;
         $data['legal_company_nature_id'] = LegalCompanyNature::find($data['legal_company_nature_id'])->name;
-        $data['legal_person_nature_id'] = LegalPersonNature::find($data['legal_person_nature_id'])->name;
         $data['municipality_id'] = Municipality::find($data['municipality_id'])->name;
+        $data['legal_rep_identity_card_type_id'] = IdentityCardType::find($data['legal_rep_identity_card_type_id'])->name;
+        $data['contributor_class_id'] = ContributorClass::find($data['contributor_class_id'])->name;
+        $data['contributor_type_id'] = ContributorType::find($data['contributor_type_id'])->name;
+        $data['payroll_type_id'] = PayrollType::find($data['payroll_type_id'])->name;
+        $data['arl_company_id'] = ArlCompany::find($data['arl_company_id'])->name;
+        $data['arl_department_id'] = Department::find($data['arl_department_id'])->name;
+        $data['bank_id'] = Bank::find($data['bank_id'])->name;
+        $data['pila_payment_operator_id'] = PilaPaymentOperator::find($data['pila_payment_operator_id'])->name;
         
         // los atributos ocultos no deben mostrarse en la tabla del index
         foreach (static::$hiddenFields as $key => $attr) {

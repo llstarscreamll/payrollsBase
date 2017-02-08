@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -100,10 +100,6 @@ class IdentityCardTypeRequest extends FormRequest
             $this->prefix.'.id' => ['array'],
             $this->prefix.'.name' => ['string'],
             $this->prefix.'.short_name' => ['string'],
-            $this->prefix.'.created_at.from' => ['date_format:Y-m-d H:i:s'],
-            $this->prefix.'.created_at.to' => ['date_format:Y-m-d H:i:s'],
-            $this->prefix.'.updated_at.from' => ['date_format:Y-m-d H:i:s'],
-            $this->prefix.'.updated_at.to' => ['date_format:Y-m-d H:i:s'],
             $this->prefix.'.sort' => ['string'],
         ];
     }
@@ -118,9 +114,7 @@ class IdentityCardTypeRequest extends FormRequest
         return [
             'id' => [],
             'name' => ['required', 'string'],
-            'short_name' => ['required', 'string'],
-            'created_at' => ['date_format:Y-m-d H:i:s'],
-            'updated_at' => ['date_format:Y-m-d H:i:s'],
+            'short_name' => ['string'],
         ];
     }
 
@@ -134,9 +128,7 @@ class IdentityCardTypeRequest extends FormRequest
         $rules = [
             'id' => [],
             'name' => ['required', 'string'],
-            'short_name' => ['required', 'string'],
-            'created_at' => ['date_format:Y-m-d H:i:s'],
-            'updated_at' => ['date_format:Y-m-d H:i:s'],
+            'short_name' => ['string'],
         ];
 
         return $rules;

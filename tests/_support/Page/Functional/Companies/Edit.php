@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -17,10 +17,16 @@ namespace Page\Functional\Companies;
 
 use FunctionalTester;
 use App\Models\IdentityCardType;
-use App\Models\CompanyTaxpayerType;
 use App\Models\LegalCompanyNature;
-use App\Models\LegalPersonNature;
 use App\Models\Municipality;
+use App\Models\IdentityCardType;
+use App\Models\ContributorClass;
+use App\Models\ContributorType;
+use App\Models\PayrollType;
+use App\Models\ArlCompany;
+use App\Models\Department;
+use App\Models\Bank;
+use App\Models\PilaPaymentOperator;
 
 class Edit extends Index
 {
@@ -92,19 +98,45 @@ class Edit extends Index
         $data = array();
 
         $data = [
-            'name' => "",
+            'name' => 'Acme Corp.',
             'identity_card_type_id' => IdentityCardType::all(['id'])->last()->id,
-            'contributor_identity_card_number' => "",
-            'verification_digit' => "",
-            'company_taxpayer_type_id' => CompanyTaxpayerType::all(['id'])->last()->id,
+            'contributor_identity_card_number' => 321,
+            'verification_digit' => 2,
             'legal_company_nature_id' => LegalCompanyNature::all(['id'])->last()->id,
-            'legal_person_nature_id' => LegalPersonNature::all(['id'])->last()->id,
-            'has_branches' => true,
-            'applay_1607_law' => true,
-            'applay_1429_law' => true,
-            'founded_at' => '1995-05-05',
-            'address' => 'carrera 4 #5-6',
+            'person_type' => 'Natural',
+            'address' => 'carrera 321',
             'municipality_id' => Municipality::all(['id'])->last()->id,
+            'dane_activity_code' => 2,
+            'phone' => 654321,
+            'fax' => 456789,
+            'email' => 'acmecorp@acmecorp.com',
+            'legal_rep_identity_card_type_id' => IdentityCardType::all(['id'])->last()->id,
+            'legal_rep_identity_card_number' => 2,
+            'legal_rep_verification_digit' => 2,
+            'legal_rep_first_name' => 'Jane',
+            'legal_rep_middle_name' => 'Alexa',
+            'legal_rep_first_surname' => 'Smith',
+            'legal_rep_last_surname' => 'Stevenson',
+            'legal_rep_email' => 'jane@example.com',
+            'contact_first_name' => 'Vladimir',
+            'contact_last_name' => 'Grant',
+            'contact_cell_phone' => '52456 123654',
+            'contact_email' => 'vladimir@example.com',
+            'contributor_class_id' => ContributorClass::all(['id'])->last()->id,
+            'presentation_form' => 'sucursal',
+            'contributor_type_id' => ContributorType::all(['id'])->last()->id,
+            'payroll_type_id' => PayrollType::all(['id'])->last()->id,
+            'arl_company_id' => ArlCompany::all(['id'])->last()->id,
+            'arl_department_id' => Department::all(['id'])->last()->id,
+            'law_1429_from_2010' => true,
+            'law_1607_from_2012' => '0',
+            'commercial_registration_date' => '2017-01-01',
+            'payment_method' => 'Cheque',
+            'bank_id' => Bank::all(['id'])->last()->id,
+            'bank_account_type' => 'ahorros',
+            'bank_account_number' => '987654321',
+            'payment_frequency' => 'Quincenal',
+            'pila_payment_operator_id' => PilaPaymentOperator::all(['id'])->last()->id,
         ];
 
         return $data;

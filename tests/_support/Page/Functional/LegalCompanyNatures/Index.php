@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -160,8 +160,6 @@ class Index{
             'id' => 1,
             'name' => 'Pública',
             'short_name' => 1,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ];
     }
 

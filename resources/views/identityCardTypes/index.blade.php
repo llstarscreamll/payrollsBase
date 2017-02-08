@@ -16,7 +16,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -91,32 +91,5 @@
         preventDropDownHide();
     });
 
-    {{-- Configuración regional para Bootstrap DateRangePicker --}}
-    dateRangePickerLocaleSettings = @include('core::shared.dateRangePickerLocales')
-
-    {{-- Algunos rangos de fecha predeterminados para Bootstrap DateRangePicker --}}
-    dateRangePickerRangesSettings = @include('core::shared.dateRangePickerRanges')
-
-    let dateRangeFields = [
-        {
-            field: 'input.plugin-date',
-            format: 'YYYY-MM-DD',
-            with_time_picker: false,
-            opens: 'center',
-        },
-        {
-            field: 'input.plugin-datetime',
-            format: 'YYYY-MM-DD HH:mm:ss',
-            with_time_picker: true,
-            opens: 'left',
-        }
-    ];
-
-    {{-- Configuración de Bootstrap DateRangePicker --}}
-    setupDateRangePickers(
-        dateRangeFields,
-        dateRangePickerLocaleSettings,
-        dateRangePickerRangesSettings
-    );
 </script>
 @endsection

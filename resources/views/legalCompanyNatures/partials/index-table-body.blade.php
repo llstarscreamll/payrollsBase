@@ -22,7 +22,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -48,16 +48,6 @@
         @if(in_array('short_name', $selectedTableColumns))
         <td class="short_name">
             {{ $record->short_name }}
-        </td>
-        @endif
-        @if(in_array('created_at', $selectedTableColumns))
-        <td class="created_at">
-            {{ $record->created_at }}
-        </td>
-        @endif
-        @if(in_array('updated_at', $selectedTableColumns))
-        <td class="updated_at">
-            {{ $record->updated_at }}
         </td>
         @endif
         
@@ -116,7 +106,7 @@
 @empty
 
     <tr>
-        <td class="empty-table" colspan="7">
+        <td class="empty-table" colspan="5">
             <div  class="alert alert-warning">
                 {{trans('core::shared.no-records-found')}}
             </div>

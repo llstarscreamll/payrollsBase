@@ -19,7 +19,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -56,39 +56,14 @@
         {!! UISearch::searchField('int', 'verification_digit') !!}
     </td>
     @endif
-    @if(in_array('company_taxpayer_type_id', $selectedTableColumns))
-    <td class="company_taxpayer_type_id">
-        {!! UISearch::searchField('MUL', 'company_taxpayer_type_id', '', $company_taxpayer_type_id_list) !!}
-    </td>
-    @endif
     @if(in_array('legal_company_nature_id', $selectedTableColumns))
     <td class="legal_company_nature_id">
         {!! UISearch::searchField('MUL', 'legal_company_nature_id', '', $legal_company_nature_id_list) !!}
     </td>
     @endif
-    @if(in_array('legal_person_nature_id', $selectedTableColumns))
-    <td class="legal_person_nature_id">
-        {!! UISearch::searchField('MUL', 'legal_person_nature_id', '', $legal_person_nature_id_list) !!}
-    </td>
-    @endif
-    @if(in_array('has_branches', $selectedTableColumns))
-    <td class="has_branches">
-        {!! UISearch::searchField('tinyint', 'has_branches') !!}
-    </td>
-    @endif
-    @if(in_array('applay_1607_law', $selectedTableColumns))
-    <td class="applay_1607_law">
-        {!! UISearch::searchField('tinyint', 'applay_1607_law') !!}
-    </td>
-    @endif
-    @if(in_array('applay_1429_law', $selectedTableColumns))
-    <td class="applay_1429_law">
-        {!! UISearch::searchField('tinyint', 'applay_1429_law') !!}
-    </td>
-    @endif
-    @if(in_array('founded_at', $selectedTableColumns))
-    <td class="founded_at">
-        {!! UISearch::searchField('date', 'founded_at') !!}
+    @if(in_array('person_type', $selectedTableColumns))
+    <td class="person_type">
+        {!! UISearch::searchField('varchar', 'person_type') !!}
     </td>
     @endif
     @if(in_array('address', $selectedTableColumns))
@@ -101,14 +76,159 @@
         {!! UISearch::searchField('MUL', 'municipality_id', '', $municipality_id_list) !!}
     </td>
     @endif
-    @if(in_array('created_at', $selectedTableColumns))
-    <td class="created_at">
-        {!! UISearch::searchField('timestamp', 'created_at') !!}
+    @if(in_array('dane_activity_code', $selectedTableColumns))
+    <td class="dane_activity_code">
+        {!! UISearch::searchField('varchar', 'dane_activity_code') !!}
     </td>
     @endif
-    @if(in_array('updated_at', $selectedTableColumns))
-    <td class="updated_at">
-        {!! UISearch::searchField('timestamp', 'updated_at') !!}
+    @if(in_array('phone', $selectedTableColumns))
+    <td class="phone">
+        {!! UISearch::searchField('varchar', 'phone') !!}
+    </td>
+    @endif
+    @if(in_array('fax', $selectedTableColumns))
+    <td class="fax">
+        {!! UISearch::searchField('varchar', 'fax') !!}
+    </td>
+    @endif
+    @if(in_array('email', $selectedTableColumns))
+    <td class="email">
+        {!! UISearch::searchField('varchar', 'email') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_identity_card_type_id', $selectedTableColumns))
+    <td class="legal_rep_identity_card_type_id">
+        {!! UISearch::searchField('MUL', 'legal_rep_identity_card_type_id', '', $legal_rep_identity_card_type_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_identity_card_number', $selectedTableColumns))
+    <td class="legal_rep_identity_card_number">
+        {!! UISearch::searchField('bigint', 'legal_rep_identity_card_number') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_verification_digit', $selectedTableColumns))
+    <td class="legal_rep_verification_digit">
+        {!! UISearch::searchField('int', 'legal_rep_verification_digit') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_first_name', $selectedTableColumns))
+    <td class="legal_rep_first_name">
+        {!! UISearch::searchField('varchar', 'legal_rep_first_name') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_middle_name', $selectedTableColumns))
+    <td class="legal_rep_middle_name">
+        {!! UISearch::searchField('varchar', 'legal_rep_middle_name') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_first_surname', $selectedTableColumns))
+    <td class="legal_rep_first_surname">
+        {!! UISearch::searchField('varchar', 'legal_rep_first_surname') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_last_surname', $selectedTableColumns))
+    <td class="legal_rep_last_surname">
+        {!! UISearch::searchField('varchar', 'legal_rep_last_surname') !!}
+    </td>
+    @endif
+    @if(in_array('legal_rep_email', $selectedTableColumns))
+    <td class="legal_rep_email">
+        {!! UISearch::searchField('varchar', 'legal_rep_email') !!}
+    </td>
+    @endif
+    @if(in_array('contact_first_name', $selectedTableColumns))
+    <td class="contact_first_name">
+        {!! UISearch::searchField('varchar', 'contact_first_name') !!}
+    </td>
+    @endif
+    @if(in_array('contact_last_name', $selectedTableColumns))
+    <td class="contact_last_name">
+        {!! UISearch::searchField('varchar', 'contact_last_name') !!}
+    </td>
+    @endif
+    @if(in_array('contact_cell_phone', $selectedTableColumns))
+    <td class="contact_cell_phone">
+        {!! UISearch::searchField('varchar', 'contact_cell_phone') !!}
+    </td>
+    @endif
+    @if(in_array('contact_email', $selectedTableColumns))
+    <td class="contact_email">
+        {!! UISearch::searchField('varchar', 'contact_email') !!}
+    </td>
+    @endif
+    @if(in_array('contributor_class_id', $selectedTableColumns))
+    <td class="contributor_class_id">
+        {!! UISearch::searchField('MUL', 'contributor_class_id', '', $contributor_class_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('presentation_form', $selectedTableColumns))
+    <td class="presentation_form">
+        {!! UISearch::searchField('varchar', 'presentation_form') !!}
+    </td>
+    @endif
+    @if(in_array('contributor_type_id', $selectedTableColumns))
+    <td class="contributor_type_id">
+        {!! UISearch::searchField('MUL', 'contributor_type_id', '', $contributor_type_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('payroll_type_id', $selectedTableColumns))
+    <td class="payroll_type_id">
+        {!! UISearch::searchField('MUL', 'payroll_type_id', '', $payroll_type_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('arl_company_id', $selectedTableColumns))
+    <td class="arl_company_id">
+        {!! UISearch::searchField('MUL', 'arl_company_id', '', $arl_company_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('arl_department_id', $selectedTableColumns))
+    <td class="arl_department_id">
+        {!! UISearch::searchField('MUL', 'arl_department_id', '', $arl_department_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('law_1429_from_2010', $selectedTableColumns))
+    <td class="law_1429_from_2010">
+        {!! UISearch::searchField('tinyint', 'law_1429_from_2010') !!}
+    </td>
+    @endif
+    @if(in_array('law_1607_from_2012', $selectedTableColumns))
+    <td class="law_1607_from_2012">
+        {!! UISearch::searchField('tinyint', 'law_1607_from_2012') !!}
+    </td>
+    @endif
+    @if(in_array('commercial_registration_date', $selectedTableColumns))
+    <td class="commercial_registration_date">
+        {!! UISearch::searchField('date', 'commercial_registration_date') !!}
+    </td>
+    @endif
+    @if(in_array('payment_method', $selectedTableColumns))
+    <td class="payment_method">
+        {!! UISearch::searchField('varchar', 'payment_method') !!}
+    </td>
+    @endif
+    @if(in_array('bank_id', $selectedTableColumns))
+    <td class="bank_id">
+        {!! UISearch::searchField('MUL', 'bank_id', '', $bank_id_list) !!}
+    </td>
+    @endif
+    @if(in_array('bank_account_type', $selectedTableColumns))
+    <td class="bank_account_type">
+        {!! UISearch::searchField('varchar', 'bank_account_type') !!}
+    </td>
+    @endif
+    @if(in_array('bank_account_number', $selectedTableColumns))
+    <td class="bank_account_number">
+        {!! UISearch::searchField('varchar', 'bank_account_number') !!}
+    </td>
+    @endif
+    @if(in_array('payment_frequency', $selectedTableColumns))
+    <td class="payment_frequency">
+        {!! UISearch::searchField('varchar', 'payment_frequency') !!}
+    </td>
+    @endif
+    @if(in_array('pila_payment_operator_id', $selectedTableColumns))
+    <td class="pila_payment_operator_id">
+        {!! UISearch::searchField('MUL', 'pila_payment_operator_id', '', $pila_payment_operator_id_list) !!}
     </td>
     @endif
     

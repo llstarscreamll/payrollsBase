@@ -13,7 +13,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -27,7 +27,3 @@
 <link href="{{ asset('plugins/icheck2/square/blue.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('plugins/icheck2/square/red.css') }}" rel="stylesheet" type="text/css" />
 <script src="{{ asset('plugins/icheck2/icheck.min.js') }}" type="text/javascript"></script>
-{{-- Bootstrap DateRangePicker --}}
-<link href="{{ asset('plugins/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
-<script src="{{ asset('plugins/moment/min/moment.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('plugins/bootstrap-daterangepicker/daterangepicker.js') }}" type="text/javascript"></script>

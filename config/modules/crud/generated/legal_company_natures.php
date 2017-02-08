@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -64,7 +64,6 @@ return array (
     array (
       'name' => 'short_name',
       'type' => 'varchar',
-      'required' => '1',
       'defValue' => '',
       'key' => '',
       'maxLength' => '255',
@@ -77,34 +76,6 @@ return array (
       'label' => 'El nombre corto',
       'testData' => '1',
       'testDataUpdate' => '2',
-      'validation_rules' => '',
-    ),
-    3 => 
-    array (
-      'name' => 'created_at',
-      'type' => 'timestamp',
-      'defValue' => '',
-      'key' => '',
-      'maxLength' => '0',
-      'namespace' => '',
-      'relation' => '',
-      'label' => 'La fecha de creación',
-      'testData' => 'date(\'Y-m-d H:i:s\')',
-      'testDataUpdate' => '',
-      'validation_rules' => '',
-    ),
-    4 => 
-    array (
-      'name' => 'updated_at',
-      'type' => 'timestamp',
-      'defValue' => '',
-      'key' => '',
-      'maxLength' => '0',
-      'namespace' => '',
-      'relation' => '',
-      'label' => 'La fecha de actualización',
-      'testData' => 'date(\'Y-m-d H:i:s\')',
-      'testDataUpdate' => '',
       'validation_rules' => '',
     ),
   ),

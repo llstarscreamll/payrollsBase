@@ -19,7 +19,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -44,16 +44,6 @@
     @if(in_array('short_name', $selectedTableColumns))
     <td class="short_name">
         {!! UISearch::searchField('varchar', 'short_name') !!}
-    </td>
-    @endif
-    @if(in_array('created_at', $selectedTableColumns))
-    <td class="created_at">
-        {!! UISearch::searchField('timestamp', 'created_at') !!}
-    </td>
-    @endif
-    @if(in_array('updated_at', $selectedTableColumns))
-    <td class="updated_at">
-        {!! UISearch::searchField('timestamp', 'updated_at') !!}
     </td>
     @endif
     

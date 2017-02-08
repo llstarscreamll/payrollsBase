@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -18,11 +18,16 @@ namespace App\Services;
 use App\Http\Requests\CompanyRequest;
 use App\Repositories\Contracts\CompanyRepository;
 use App\Models\Company;
-use App\Repositories\Contracts\CompanyTaxpayerTypeRepository;
+use App\Repositories\Contracts\ArlCompanyRepository;
+use App\Repositories\Contracts\DepartmentRepository;
+use App\Repositories\Contracts\BankRepository;
+use App\Repositories\Contracts\ContributorClassRepository;
+use App\Repositories\Contracts\ContributorTypeRepository;
 use App\Repositories\Contracts\IdentityCardTypeRepository;
 use App\Repositories\Contracts\LegalCompanyNatureRepository;
-use App\Repositories\Contracts\LegalPersonNatureRepository;
 use App\Repositories\Contracts\MunicipalityRepository;
+use App\Repositories\Contracts\PayrollTypeRepository;
+use App\Repositories\Contracts\PilaPaymentOperatorRepository;
 use Illuminate\Support\Collection;
 
 /**
@@ -38,9 +43,29 @@ class CompanyService
     private $companyRepository;
     
     /**
-     * @var App\Repositories\Contracts\CompanyTaxpayerTypeRepository
+     * @var App\Repositories\Contracts\ArlCompanyRepository
      */
-    private $companyTaxpayerTypeRepository;
+    private $arlCompanyRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\DepartmentRepository
+     */
+    private $departmentRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\BankRepository
+     */
+    private $bankRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\ContributorClassRepository
+     */
+    private $contributorClassRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\ContributorTypeRepository
+     */
+    private $contributorTypeRepository;
     
     /**
      * @var App\Repositories\Contracts\IdentityCardTypeRepository
@@ -53,14 +78,19 @@ class CompanyService
     private $legalCompanyNatureRepository;
     
     /**
-     * @var App\Repositories\Contracts\LegalPersonNatureRepository
-     */
-    private $legalPersonNatureRepository;
-    
-    /**
      * @var App\Repositories\Contracts\MunicipalityRepository
      */
     private $municipalityRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\PayrollTypeRepository
+     */
+    private $payrollTypeRepository;
+    
+    /**
+     * @var App\Repositories\Contracts\PilaPaymentOperatorRepository
+     */
+    private $pilaPaymentOperatorRepository;
 
     /**
      * Las columnas predeterminadas a mostrar en la tabla del Index.
@@ -71,16 +101,8 @@ class CompanyService
         'name',
         'identity_card_type_id',
         'contributor_identity_card_number',
-        'verification_digit',
-        'company_taxpayer_type_id',
-        'legal_company_nature_id',
-        'legal_person_nature_id',
-        'has_branches',
-        'applay_1607_law',
-        'applay_1429_law',
-        'founded_at',
-        'address',
-        'municipality_id',
+        'person_type',
+        'email',
     ];
 
     /**
@@ -97,20 +119,30 @@ class CompanyService
      * Crea nueva instancia del servicio.
      *
      * @param App\Repositories\Contracts\CompanyRepository $companyRepository
-     * @param App\Repositories\Contracts\CompanyTaxpayerTypeRepository $companyTaxpayerTypeRepository
+     * @param App\Repositories\Contracts\ArlCompanyRepository $arlCompanyRepository
+     * @param App\Repositories\Contracts\DepartmentRepository $departmentRepository
+     * @param App\Repositories\Contracts\BankRepository $bankRepository
+     * @param App\Repositories\Contracts\ContributorClassRepository $contributorClassRepository
+     * @param App\Repositories\Contracts\ContributorTypeRepository $contributorTypeRepository
      * @param App\Repositories\Contracts\IdentityCardTypeRepository $identityCardTypeRepository
      * @param App\Repositories\Contracts\LegalCompanyNatureRepository $legalCompanyNatureRepository
-     * @param App\Repositories\Contracts\LegalPersonNatureRepository $legalPersonNatureRepository
      * @param App\Repositories\Contracts\MunicipalityRepository $municipalityRepository
+     * @param App\Repositories\Contracts\PayrollTypeRepository $payrollTypeRepository
+     * @param App\Repositories\Contracts\PilaPaymentOperatorRepository $pilaPaymentOperatorRepository
      */
-    public function __construct(CompanyRepository $companyRepository, CompanyTaxpayerTypeRepository $companyTaxpayerTypeRepository, IdentityCardTypeRepository $identityCardTypeRepository, LegalCompanyNatureRepository $legalCompanyNatureRepository, LegalPersonNatureRepository $legalPersonNatureRepository, MunicipalityRepository $municipalityRepository)
+    public function __construct(CompanyRepository $companyRepository, ArlCompanyRepository $arlCompanyRepository, DepartmentRepository $departmentRepository, BankRepository $bankRepository, ContributorClassRepository $contributorClassRepository, ContributorTypeRepository $contributorTypeRepository, IdentityCardTypeRepository $identityCardTypeRepository, LegalCompanyNatureRepository $legalCompanyNatureRepository, MunicipalityRepository $municipalityRepository, PayrollTypeRepository $payrollTypeRepository, PilaPaymentOperatorRepository $pilaPaymentOperatorRepository)
     {
         $this->companyRepository = $companyRepository;
-        $this->companyTaxpayerTypeRepository = $companyTaxpayerTypeRepository;
+        $this->arlCompanyRepository = $arlCompanyRepository;
+        $this->departmentRepository = $departmentRepository;
+        $this->bankRepository = $bankRepository;
+        $this->contributorClassRepository = $contributorClassRepository;
+        $this->contributorTypeRepository = $contributorTypeRepository;
         $this->identityCardTypeRepository = $identityCardTypeRepository;
         $this->legalCompanyNatureRepository = $legalCompanyNatureRepository;
-        $this->legalPersonNatureRepository = $legalPersonNatureRepository;
         $this->municipalityRepository = $municipalityRepository;
+        $this->payrollTypeRepository = $payrollTypeRepository;
+        $this->pilaPaymentOperatorRepository = $pilaPaymentOperatorRepository;
     }
 
     /**
@@ -173,11 +205,17 @@ class CompanyService
     public function getCreateFormData()
     {
         $data = [];
-        $data['company_taxpayer_type_id_list'] = $this->companyTaxpayerTypeRepository->getSelectList();
+        $data['arl_company_id_list'] = $this->arlCompanyRepository->getSelectList();
+        $data['arl_department_id_list'] = $this->departmentRepository->getSelectList();
+        $data['bank_id_list'] = $this->bankRepository->getSelectList();
+        $data['contributor_class_id_list'] = $this->contributorClassRepository->getSelectList();
+        $data['contributor_type_id_list'] = $this->contributorTypeRepository->getSelectList();
         $data['identity_card_type_id_list'] = $this->identityCardTypeRepository->getSelectList();
         $data['legal_company_nature_id_list'] = $this->legalCompanyNatureRepository->getSelectList();
-        $data['legal_person_nature_id_list'] = $this->legalPersonNatureRepository->getSelectList();
+        $data['legal_rep_identity_card_type_id_list'] = $this->identityCardTypeRepository->getSelectList();
         $data['municipality_id_list'] = $this->municipalityRepository->getSelectList();
+        $data['payroll_type_id_list'] = $this->payrollTypeRepository->getSelectList();
+        $data['pila_payment_operator_id_list'] = $this->pilaPaymentOperatorRepository->getSelectList();
     
         return $data;
     }
@@ -194,10 +232,30 @@ class CompanyService
         $data = array();
         $company = $this->companyRepository->find($id);
         $data['company'] = $company;
-        $data['company_taxpayer_type_id_list'] = $this->companyTaxpayerTypeRepository->getSelectList(
+        $data['arl_company_id_list'] = $this->arlCompanyRepository->getSelectList(
             'id',
             'name',
-            (array) $company->company_taxpayer_type_id
+            (array) $company->arl_company_id
+        );
+        $data['arl_department_id_list'] = $this->departmentRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->arl_department_id
+        );
+        $data['bank_id_list'] = $this->bankRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->bank_id
+        );
+        $data['contributor_class_id_list'] = $this->contributorClassRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->contributor_class_id
+        );
+        $data['contributor_type_id_list'] = $this->contributorTypeRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->contributor_type_id
         );
         $data['identity_card_type_id_list'] = $this->identityCardTypeRepository->getSelectList(
             'id',
@@ -209,15 +267,25 @@ class CompanyService
             'name',
             (array) $company->legal_company_nature_id
         );
-        $data['legal_person_nature_id_list'] = $this->legalPersonNatureRepository->getSelectList(
+        $data['legal_rep_identity_card_type_id_list'] = $this->identityCardTypeRepository->getSelectList(
             'id',
             'name',
-            (array) $company->legal_person_nature_id
+            (array) $company->legal_rep_identity_card_type_id
         );
         $data['municipality_id_list'] = $this->municipalityRepository->getSelectList(
             'id',
             'name',
             (array) $company->municipality_id
+        );
+        $data['payroll_type_id_list'] = $this->payrollTypeRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->payroll_type_id
+        );
+        $data['pila_payment_operator_id_list'] = $this->pilaPaymentOperatorRepository->getSelectList(
+            'id',
+            'name',
+            (array) $company->pila_payment_operator_id
         );
     
         return $data;

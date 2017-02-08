@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -39,17 +39,41 @@ class CompanyEloquentRepository extends BaseRepository implements CompanyReposit
         'identity_card_type_id',
         'contributor_identity_card_number',
         'verification_digit',
-        'company_taxpayer_type_id',
         'legal_company_nature_id',
-        'legal_person_nature_id',
-        'has_branches',
-        'applay_1607_law',
-        'applay_1429_law',
-        'founded_at',
+        'person_type',
         'address',
         'municipality_id',
-        'created_at',
-        'updated_at',
+        'dane_activity_code',
+        'phone',
+        'fax',
+        'email',
+        'legal_rep_identity_card_type_id',
+        'legal_rep_identity_card_number',
+        'legal_rep_verification_digit',
+        'legal_rep_first_name',
+        'legal_rep_middle_name',
+        'legal_rep_first_surname',
+        'legal_rep_last_surname',
+        'legal_rep_email',
+        'contact_first_name',
+        'contact_last_name',
+        'contact_cell_phone',
+        'contact_email',
+        'contributor_class_id',
+        'presentation_form',
+        'contributor_type_id',
+        'payroll_type_id',
+        'arl_company_id',
+        'arl_department_id',
+        'law_1429_from_2010',
+        'law_1607_from_2012',
+        'commercial_registration_date',
+        'payment_method',
+        'bank_id',
+        'bank_account_type',
+        'bank_account_number',
+        'payment_frequency',
+        'pila_payment_operator_id',
     ];
 
     /**

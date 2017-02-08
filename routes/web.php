@@ -12,7 +12,8 @@
 */
 
 Route::get(
-    '/', function () {
+    '/',
+    function () {
         return view('welcome');
     }
 );
@@ -22,9 +23,14 @@ Route::resource('municipalities', 'MunicipalityController');
 Route::resource('identity-card-types', 'IdentityCardTypeController');
 Route::resource('company-taxpayer-types', 'CompanyTaxpayerTypeController');
 Route::resource('legal-company-natures', 'LegalCompanyNatureController');
-Route::resource('legal-person-natures', 'LegalPersonNatureController');
 Route::resource('companies', 'CompanyController');
-Route::resource('branches', 'BranchController');
-Route::resource('employee-taxpayer-types', 'EmployeeTaxpayerTypeController');
-Route::resource('employees', 'EmployeeController');
-Route::resource('user-concepts', 'UserConceptController');
+Route::resource('contributor-classes', 'ContributorClassController');
+Route::resource('identity-card-types', 'IdentityCardTypeController');
+Route::resource('legal-company-natures', 'LegalCompanyNatureController');
+Route::resource('contributor-types', 'ContributorTypeController');
+Route::resource('payroll-types', 'PayrollTypeController');
+Route::resource('arl-companies', 'ArlCompanyController');
+Route::resource('banks', 'BankController');
+Route::resource('pila-payment-operators', 'PilaPaymentOperatorController');
+Route::resource('branch-offices', 'BranchOfficeController');
+Route::resource('employee-contributor-types', 'EmployeeContributorTypeController');

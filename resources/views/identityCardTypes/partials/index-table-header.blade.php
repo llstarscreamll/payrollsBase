@@ -22,7 +22,7 @@
     @version    0.1
     @author     Johan Alvarez
     @license    The MIT License (MIT)
-    @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+    @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
     @link       https://github.com/llstarscreamll
     
     ****************************************************************************
@@ -45,16 +45,6 @@
     @if(in_array('short_name', $selectedTableColumns))
     <th class="short_name">
         {!! UISearch::sortLink('identity-card-types.index', trans('identityCardType.table-columns.short_name'), 'short_name') !!}
-    </th>
-    @endif
-    @if(in_array('created_at', $selectedTableColumns))
-    <th class="created_at">
-        {!! UISearch::sortLink('identity-card-types.index', trans('identityCardType.table-columns.created_at'), 'created_at') !!}
-    </th>
-    @endif
-    @if(in_array('updated_at', $selectedTableColumns))
-    <th class="updated_at">
-        {!! UISearch::sortLink('identity-card-types.index', trans('identityCardType.table-columns.updated_at'), 'updated_at') !!}
     </th>
     @endif
     @if(!isset($hide_actions_column))

@@ -9,7 +9,7 @@
  * @version    0.1
  * @author     Johan Alvarez
  * @license    The MIT License (MIT)
- * @copyright  (c) 2015-2016, Johan Alvarez <llstarscreamll@hotmail.com>
+ * @copyright  (c) 2015-2017, Johan Alvarez <llstarscreamll@hotmail.com>
  * @link       https://github.com/llstarscreamll
  */
 
@@ -60,18 +60,8 @@ class SearchIdentityCardTypeCriteria implements CriteriaInterface
 
         $this->input->get('short_name') && $model->where('short_name', 'like', '%'.$this->input->get('short_name').'%');
 
-        $this->input->get('created_at')['informative'] && $model->whereBetween('created_at', [
-            $this->input->get('created_at')['from'],
-            $this->input->get('created_at')['to']
-        ]);
-
-        $this->input->get('updated_at')['informative'] && $model->whereBetween('updated_at', [
-            $this->input->get('updated_at')['from'],
-            $this->input->get('updated_at')['to']
-        ]);
-
         // ordenamos los resultados
-        $model->orderBy($this->input->get('sort', 'created_at'), $this->input->get('sortType', 'desc'));
+        $model->orderBy($this->input->get('sort', 'name'), $this->input->get('sortType', 'desc'));
 
         return $model;
     }
