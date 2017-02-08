@@ -119,7 +119,7 @@ return array (
     ),
     5 => 
     array (
-      'name' => 'company_taxpayer_type_id',
+      'name' => 'contributor_class_id',
       'type' => 'int',
       'required' => '1',
       'defValue' => '',
@@ -136,7 +136,26 @@ return array (
       'testDataUpdate' => '',
       'validation_rules' => '',
     ),
-    6 => 
+    6 =>
+    array (
+      'name' => 'person_type',
+      'type' => 'int',
+      'required' => '1',
+      'defValue' => '',
+      'key' => 'MUL',
+      'maxLength' => '10',
+      'namespace' => 'App\\Models\\LegalCompanyNature',
+      'relation' => 'belongsTo',
+      'fillable' => '1',
+      'on_index_table' => '1',
+      'on_create_form' => '1',
+      'on_update_form' => '1',
+      'label' => 'Tipo de persona',
+      'testData' => '2',
+      'testDataUpdate' => '',
+      'validation_rules' => '',
+    ),
+    6 =>
     array (
       'name' => 'legal_company_nature_id',
       'type' => 'int',
