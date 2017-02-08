@@ -71,6 +71,6 @@ class BankPermissionsSeeder extends Seeder
 
         \DB::table('permissions')->insert($data);
 
-        $this-call(AttachPermissionsToAdminRoleSeeder::class);
+        $this->call(AttachPermissionsToAdminRoleSeeder::class);
     }
 }
